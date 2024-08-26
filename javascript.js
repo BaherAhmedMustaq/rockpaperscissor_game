@@ -34,34 +34,74 @@ return humanchoice;
 
 }
 
+
+function score()
+{
+
 let computerselection= getcomputerChoice();
 let humanselection=gethumanChoice();
 console.log("Your Choice is " + humanselection + "!");
 console.log("Computer has selected " + computerselection + "!");
+return {computerselection,humanselection};
+
+}
+
+
+
+
+let humanscore=0;
+let computerscore=0;
+
 
 
 function playGame(computerselection,humanselection)
 {
-if (humanselection===computerselection){
-    console.log("Its a tie!")
+  
+
+if (humanselection===computerselection)
+{
+    console.log("Its a tie!");
 }
 
 else if((humanselection==="ROCK" && computerselection==="SCISSOR") || 
-(humanselection==="SCISSOR" && computerselection==="PAPER")
+(humanselection==="SCISSOR" && computerselection==="PAPER") ||
 (humanselection==="PAPER" && computerselection==="ROCK")
 )
 {
-    console.log("You Win!")
+
+    console.log("You win this round!");
+    humanscore++;
 } 
 
 else{
-    console.log("Computer Wins!")
+    console.log("Computer wins this round!");
+    computerscore++;
 }
+
+
 
 }
 
 function playRound()
 {
+    for(i=1;i<=5;i++){
+        const {computerselection, humanselection}=score();
+        playGame(computerselection,humanselection);
+    }
+console.log(`Human - ${humanscore} Computer- ${computerscore}`);
 
+if(computerscore===humanscore){
+    console.log("The Game is tied!");
+}
+
+else if(computerscore>humanscore){
+    console.log("Computer Wins!");
+}
+
+else{
+    console.log("Human Wins!");
+}
 
 }
+
+playRound();
